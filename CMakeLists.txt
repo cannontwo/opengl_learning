@@ -17,6 +17,10 @@ find_package(GLUT REQUIRED)
 include_directories(${GLUT_INCLUDE_DIRS})
 list(APPEND LIBRARIES ${GLUT_LIBRARY})
 
+find_package(GLEW REQUIRED)
+include_directories(${GLEW_INCLUDE_DIRS})
+list(APPEND LIBRARIES ${GLEW_LIBRARIES})
+
 include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 
 add_executable(sierpinski sierpinski.cpp)
