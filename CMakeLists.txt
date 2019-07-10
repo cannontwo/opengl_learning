@@ -25,3 +25,4 @@ include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 
 add_subdirectory(sierpinski)
 add_subdirectory(sierpinski_recursive)
+add_subdirectory(rotating_cube)
