@@ -23,7 +23,5 @@ list(APPEND LIBRARIES ${GLEW_LIBRARIES})
 
 include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 
-add_executable(sierpinski sierpinski.cpp)
-target_link_libraries(sierpinski
-  ${LIBRARIES}
-  )
+add_subdirectory(sierpinski)
+add_subdirectory(sierpinski_recursive)

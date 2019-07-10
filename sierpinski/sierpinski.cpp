@@ -15,7 +15,7 @@ void display() {
 void init() {
   vec2 points[N];
 
-  vec2 vertices[3] = {vec2(-1.0, 1.0), vec2(0.0, 1.0), vec2(1.0, -1.0)};
+  vec2 vertices[3] = {vec2(-1.0, -1.0), vec2(0.0, 1.0), vec2(1.0, -1.0)};
   points[0] = vec2(0.25, 0.5);
   
   // Generate sierpinski points
@@ -33,7 +33,13 @@ void init() {
   glBindBuffer(GL_ARRAY_BUFFER, buffer);
   glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
 
-  // TODO
+  GLuint program = InitShader("vshader.glsl", "fshader.glsl");
+  glUseProgram(program);
+
+  // Initialize vertex position attribute from vertex shader
+  GLuint loc = glGetAttribLocation(program, "vPosition");
+  glEnableVertexAttribArray(loc);
+  glVertexAttribPointer(loc, 2, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
   
   glClearColor(1.0, 1.0, 1.0, 1.0);
 }
@@ -43,7 +49,7 @@ int main(int argc, char **argv) {
   glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
   glutInitWindowSize(500, 500);
   glutInitWindowPosition(0, 0);
-  glutCreateWindow("Simple OpenGL example");
+  glutCreateWindow("Sierpinski Gasket");
 
   glewInit();
   glutDisplayFunc(display);
@@ -51,4 +57,5 @@ int main(int argc, char **argv) {
   init();
 
   glutMainLoop();
+  return 0;
 }
